@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from pymongo import MongoClient
 import json
 
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "<a href='/posneg'>Pos/NegJSON</a></br><a href='/percents'>Percent positive JSON</a>"
+     return render_template('index.html')
 
 @app.route('/posneg')
 def numbers():
@@ -56,5 +56,4 @@ def get_percents():
     }
     return data
     
-
-app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
+app.run()
